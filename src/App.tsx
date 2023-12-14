@@ -14,7 +14,7 @@ function App() {
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
-                <img className="h-8 w-auto" src="https://www.mortgageautomator.com/favicon.ico" alt="Your Company" />
+                <img className="h-8 w-auto" src="/favicon.ico" alt="Mortgage Automator" />
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4 text-white font-bold text-xl">
