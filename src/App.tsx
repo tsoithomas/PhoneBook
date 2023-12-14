@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import maLogo from '/ma.png'
 import './App.css'
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
   return (
     <div className='flex flex-col h-screen'>
       <nav className="bg-cyan-800 px-8 flex h-16 items-center justify-start">
-        <img className="h-8 w-auto" src="/favicon.ico" alt="Mortgage Automator" />
+        <img className="h-8 w-auto" src={maLogo} alt="Mortgage Automator" />
         <div className="ml-6 block text-white font-bold text-xl">
           MA PhoneBook
         </div>
