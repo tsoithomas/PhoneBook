@@ -69,13 +69,14 @@ function App() {
 	}
 	
 	function toggleSubmenu(personid: number) {
-		let newSubmenuState: {[index: number]: boolean} = {};
-		newSubmenuState[personid] = ! submenuStates[personid];
-		setSubmenuStates(prevState => ({
-			...prevState,
-			...newSubmenuState
-		}));
 		getPhones(personid);
+		let newSubmenuStates: {[index: number]: boolean} = {};
+		newSubmenuStates = Object.assign({},submenuStates);
+		for (const state in newSubmenuStates) {
+			newSubmenuStates[state] = false;
+		}
+		newSubmenuStates[personid] = ! submenuStates[personid];
+		setSubmenuStates(newSubmenuStates);
 	}
 
 	async function getPhones(personid: number) {
