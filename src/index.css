@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  
+  .wrapper.is-open {
+    grid-template-rows: 1fr;
+  }
