@@ -136,12 +136,24 @@ function ContactList() {
 
 	return (
 		<div className='flex flex-col h-screen'>
-			<nav className="bg-cyan-800 px-4 flex h-16 items-center justify-start">
+			<nav className="flex flex-row bg-cyan-800 px-4 flex h-16 items-center justify-start">
 				<div className='rounded-full overflow-hidden'>
 					<img className="h-12 w-auto hover:bg-cyan-700 px-2 py-2" src={maLogo} alt="Mortgage Automator" />
 				</div>
-				<div className="ml-2 block text-white font-bold text-xl">
+				<div className="flex-grow ml-2 block text-white font-bold text-xl">
 					MA PhoneBook
+				</div>
+				<div>
+					<button
+						className="w-full align-middle justify-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-cyan-800 hover:bg-cyan-700 text-white flex items-center gap-3"
+						type="button"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="none" fill="currentColor" className="w-5 h-5">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 018 4h-2.71a8 8 0 10.001 12h2.71A9.985 9.985 0 0112 22zm7-6v-3h-8v-2h8V8l5 4-5 4z" />
+						</svg>
+						Log out
+					</button>
 				</div>
 			</nav>
 
