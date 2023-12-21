@@ -6,12 +6,11 @@ import useToken from './components/useToken';
 
 function App() {
 	const { token, setToken } = useToken();
-	console.log("init: " + token);
 
 	if (!token) 
 		return <Login setToken={setToken} />
 	else
-		return <ContactList />
+		return <ContactList token={token} setToken={setToken} />
 }
 
 export default App

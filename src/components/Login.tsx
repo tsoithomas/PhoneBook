@@ -3,12 +3,13 @@ import maLogo from '/ma.png'
 import sha256 from 'crypto-js/sha256';
 
 interface LoginProps {
-	setToken: (token: string) => void;
+	setToken: (token: string | null) => void;
 }
 
 function Login(props:LoginProps) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [showError, setShowError] = useState(false);
 
 	async function SubmitLogin() {
 		try {
@@ -25,6 +26,9 @@ function Login(props:LoginProps) {
 
 			if (response.ok && data.status == 200) {
 				props.setToken(data.token);
+			}
+			else {
+				setShowError(true);
 			}
 		} catch (e: any) {
 			console.error(`Download error: ${e.message}`);
@@ -44,6 +48,9 @@ function Login(props:LoginProps) {
 			
 			<div className="flex flex-col flex-1 overflow-y-scroll overflow-x-hidden justify-center items-center">
 				<div className='flex flex-col gap-4 w-full max-w-sm'>
+					<div className='text-xs text-cyan-700/50'>
+						user: demo | pass: pass
+					</div>
 					<div className="relative flex-grow">
 						<input placeholder="Username"
 							name="username"
@@ -51,6 +58,10 @@ function Login(props:LoginProps) {
 							value={username}
 							onChange={(e) => {
 								setUsername(e.target.value);
+								setShowError(false);
+							}}
+							onKeyDown={(e) => {
+								if (e.key == 'Enter') SubmitLogin();
 							}}
 						/>
 						<label
@@ -66,12 +77,23 @@ function Login(props:LoginProps) {
 							value={password}
 							onChange={(e) => {
 								setPassword(e.target.value);
+								setShowError(false);
+							}}
+							onKeyDown={(e) => {
+								if (e.key == 'Enter') SubmitLogin();
 							}}
 						/>
 						<label
 							className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-cyan-700 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-cyan-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-cyan-800 peer-focus:after:scale-x-100 peer-focus:after:border-cyan-800 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-300">
 							Password
 						</label>
+					</div>
+					<div className={(showError?"is-open ":"") + 'wrapper transition-all duration-200 overflow-hidden'}>
+						<div className='overflow-hidden'>
+							<div className=' text-xs text-red-600 px-4 py-2 rounded-full border-red-600 border-2'>
+							Error: incorrect username and/or password
+							</div>
+						</div>
 					</div>
 					<div className="relative">
 						<button
